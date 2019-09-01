@@ -134,7 +134,9 @@ func (p *eJsonLog) logJSON(v Lvl, ctx context.Context, msg interface{}, kv ...in
 	file = p.getFilePath(file)
 	om.Set("prefix", p.Prefix())
 	om.Set("level", p.levels[v])
-	om.Set("cur_time", time.Now().Format(time.RFC3339Nano))
+	now := time.Now()
+	om.Set("cur_time", now.Format(time.RFC3339Nano))
+	om.Set("cur_unix_time", now.Unix())
 	om.Set("file", file)
 	om.Set("line", line)
 	localMachineIPV4, _ := util.LocalMachineIPV4()
@@ -196,6 +198,7 @@ func (l *eJsonLog) initLevels() {
 		"INFO",
 		"WARN",
 		"ERROR",
+		"FATAL",
 	}
 }
 

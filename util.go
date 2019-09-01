@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-const __CtxElogOrderMapKey = "ctx_elog_order_map_key"
+const __CtxELogOrderMapKey = "ctx_elog_order_map_key"
 
 func SetTraceInfo(ctx context.Context, traceId, parentId, spanId string) context.Context {
 	om := NewOrderMap()
@@ -20,7 +20,6 @@ func SetTraceInfo(ctx context.Context, traceId, parentId, spanId string) context
 	return setContext(ctx, src)
 }
 
-// copy ctx 中的 日志的trace信息 GogoLanguage,GogoPlatform,GogoDeviceId,GogoVersion,GogoUserToken
 // 其它的全部丢弃，比如超时设置等
 func CopyTraceInfo(ctx context.Context) context.Context {
 	src := FromContext(ctx)
@@ -45,7 +44,7 @@ func GetTraceInfo(ctx context.Context) (traceId, parentId, spanId string) {
 }
 
 func FromContext(ctx context.Context) *OrderedMap {
-	ret := ctx.Value(__CtxElogOrderMapKey)
+	ret := ctx.Value(__CtxELogOrderMapKey)
 	if ret == nil {
 		return nil
 	}
@@ -54,7 +53,7 @@ func FromContext(ctx context.Context) *OrderedMap {
 
 // 别人不需要用
 func setContext(ctx context.Context, dt *OrderedMap) context.Context {
-	ctx = context.WithValue(ctx, __CtxElogOrderMapKey, dt)
+	ctx = context.WithValue(ctx, __CtxELogOrderMapKey, dt)
 	return ctx
 }
 
