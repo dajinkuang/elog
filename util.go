@@ -7,11 +7,11 @@ import (
 
 const __CtxELogOrderMapKey = "ctx_elog_order_map_key"
 
-func SetTraceInfo(ctx context.Context, traceId, parentId, spanId string) context.Context {
+func SetTraceInfo(ctx context.Context, traceID, parentID, spanID string) context.Context {
 	om := NewOrderMap()
-	om.Set(TraceId, traceId)
-	om.Set(ParentId, parentId)
-	om.Set(SpanId, spanId)
+	om.Set(TraceID, traceID)
+	om.Set(ParentID, parentID)
+	om.Set(SpanID, spanID)
 	src := FromContext(ctx)
 	if src == nil {
 		src = NewOrderMap()
@@ -29,16 +29,16 @@ func CopyTraceInfo(ctx context.Context) context.Context {
 	return setContext(context.Background(), src)
 }
 
-func GetTraceInfo(ctx context.Context) (traceId, parentId, spanId string) {
+func GetTraceInfo(ctx context.Context) (traceID, parentID, spanID string) {
 	om := FromContext(ctx)
-	if tmp, ok := om.Get(TraceId); ok {
-		traceId = tmp.(string)
+	if tmp, ok := om.Get(TraceID); ok {
+		traceID = tmp.(string)
 	}
-	if tmp, ok := om.Get(ParentId); ok {
-		parentId = tmp.(string)
+	if tmp, ok := om.Get(ParentID); ok {
+		parentID = tmp.(string)
 	}
-	if tmp, ok := om.Get(SpanId); ok {
-		spanId = tmp.(string)
+	if tmp, ok := om.Get(SpanID); ok {
+		spanID = tmp.(string)
 	}
 	return
 }

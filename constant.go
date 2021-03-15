@@ -1,9 +1,9 @@
 package elog
 
 const (
-	TraceId  = "traceId"
-	ParentId = "parentId"
-	SpanId   = "spanId"
+	TraceID  = "traceID"
+	ParentID = "parentID"
+	SpanID   = "spanID"
 
-	UserRequestIp = "user_request_ip"
+	UserRequestIP = "user_request_ip"
 )
