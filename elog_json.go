@@ -4,12 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/dajinkuang/util/iputil"
 	"io"
 	"path"
 	"runtime"
 	"time"
 
-	"github.com/dajinkuang/util"
 	"github.com/labstack/gommon/color"
 )
 
@@ -139,7 +139,7 @@ func (p *eJsonLog) logJSON(v Lvl, ctx context.Context, msg interface{}, kv ...in
 	om.Set("cur_unix_time", now.Unix())
 	om.Set("file", file)
 	om.Set("line", line)
-	localMachineIPV4, _ := util.LocalMachineIPV4()
+	localMachineIPV4, _ := iputil.LocalMachineIPV4()
 	om.Set("local_machine_ipv4", localMachineIPV4)
 	om.Set(TraceID, ValueFromOM(ctx, TraceID))
 	om.Set(SpanID, ValueFromOM(ctx, SpanID))
